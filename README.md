@@ -1,4 +1,4 @@
-# Open Source - Auth
+# Open Source - Auth / Login for alt:V
 
 Created by Stuyk (Trevor Wessel)
 
@@ -27,7 +27,7 @@ MONGO_DB=os-auth
 **MONGO_USER** is completely optional. Recommended in a production environment.
 **MONGO_PASS** is completely optional. Recommended in a production environment.
 
-## Installing Dependencies
+## Installing Dependencies / Installation
 
 **I cannot stress this enough. Ensure you have NodeJS 13+ or you will have problems.**
 
@@ -46,6 +46,18 @@ npm install simplymongo
 ```
 
 After simply add the name of this resource to your `server.cfg` resource section.
+Then simply clone this repository into your main server resources folder.
+
+```
+cd resources
+git clone https://github.com/Stuyk/altv-os-auth
+```
+
+Ensure your `package.json` includes this property:
+
+```json
+"type": "module"
+```
 
 # Events & Triggering Authentication
 

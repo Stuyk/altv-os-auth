@@ -1,5 +1,4 @@
 /// <reference types="@altv/types-server" />
-import alt from 'alt-server';
 import chalk from 'chalk';
 import { Database } from 'simplymongo';
 import dotenv from 'dotenv';
