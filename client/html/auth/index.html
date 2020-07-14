@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>HUD</title>
+
+        <link rel="stylesheet/less" type="text/css" href="./style.less" />
+    </head>
+    <body class="">
+        <div id="app">
+            <div class="container" v-if="!splashscreen">
+                <!-- Password Recovery -->
+                <template v-if="lostPassword">
+                    <div class="windowTitle">
+                        <span>{{ locale.headers.lostPassword }}</span>
+                        <a v-on:click="website()">{{ locale.website }}</a>
+                    </div>
+                    <div class="content">
+                        <div class="info" v-if="!tokenSent && !errorMessage">{{ locale.desc.tokenNotSent }}</div>
+                        <div class="info" v-if="tokenSent && !errorMessage">{{ locale.desc.tokenSent }}</div>
+                        <div class="info" v-if="errorMessage">
+                            Error: {{ errorMessage }}
+                        </div>
+                        <div class="inputs">
+                            <label v-if="!tokenSent">Email</label>
+                            <input v-if="!tokenSent" v-model="email" type="text" placeholder="email" ref="email" />
+                            <label v-if="tokenSent">Token</label>
+                            <input v-if="tokenSent" v-model="token" type="text" placeholder="token" ref="token" />
+                        </div>
+                        <div class="buttons">
+                            <button class="btn orange mgb" v-on:click="toggleLostPassword()">
+                                {{ locale.buttons.returnToLoginBtn }}
+                            </button>
+                            <button v-if="!tokenSent" class="btn green" v-on:click="processLostPassword()">
+                                {{ locale.buttons.requestTokenBtn }}
+                            </button>
+                            <button v-if="tokenSent" class="btn green" v-on:click="processLostPassword()">
+                                {{ locale.buttons.submitTokenBtn }}
+                            </button>
+                        </div>
+                    </div>
+                </template>
+                <template v-else>
+                    <!-- Login -->
+                    <template v-if="!registering">
+                        <div class="windowTitle">
+                            <span>{{ locale.headers.userLogin }}</span>
+                            <a v-on:click="website()">{{ locale.website }}</a>
+                        </div>
+                        <div class="content">
+                            <div class="info" v-if="!errorMessage">{{ locale.desc.existingAccount }}</div>
+                            <div class="info" v-else>Error: {{ errorMessage }}</div>
+                            <div class="inputs">
+                                <label>Email</label>
+                                <input v-model="email" type="text" placeholder="email" ref="email" />
+                                <label>Password</label>
+                                <input
+                                    v-model="password"
+                                    type="password"
+                                    placeholder="password"
+                                    ref="password"
+                                    v-on:keyup="processLoginEnter"
+                                />
+                            </div>
+                            <div class="buttons">
+                                <div class="split">
+                                    <button class="btn mgr orange" v-on:click="toggleLostPassword()">
+                                        {{ locale.buttons.lostPasswordBtn }}
+                                    </button>
+                                    <button class="btn mgl" v-on:click="toggleMode()">
+                                        {{ locale.buttons.newAccountBtn }}
+                                    </button>
+                                </div>
+                                <button class="btn green" v-on:click="processRegistration(false)">
+                                    {{ locale.buttons.loginBtn }}
+                                </button>
+                            </div>
+                        </div>
+                    </template>
+                    <!-- Registration -->
+                    <template v-else>
+                        <div class="windowTitle">
+                            <span>{{ locale.headers.userRegistration }}</span>
+                            <a v-on:click="website()">{{ locale.website }}</a>
+                        </div>
+                        <div class="content">
+                            <div class="info" v-if="!errorMessage">{{ locale.desc.newAccount }}</div>
+                            <div class="info" v-else>Error: {{ errorMessage }}</div>
+                            <div class="inputs">
+                                <label>Email</label>
+                                <input v-model="email" type="text" placeholder="email" ref="email" />
+                                <label>Password</label>
+                                <input v-model="password" type="password" placeholder="password" ref="password" />
+                                <label>Password Again</label>
+                                <input
+                                    v-model="password2"
+                                    type="password"
+                                    placeholder="confirm password"
+                                    ref="password2"
+                                    v-on:keyup="processRegistrationEnter"
+                                />
+                            </div>
+                            <div class="buttons">
+                                <div class="split">
+                                    <button class="btn mgr orange" v-on:click="toggleLostPassword()">
+                                        {{ locale.buttons.lostPasswordBtn }}
+                                    </button>
+                                    <button class="btn mgl" v-on:click="toggleMode()">
+                                        {{ locale.buttons.existingAccountBtn }}
+                                    </button>
+                                </div>
+                                <button class="btn green" v-on:click="processRegistration(true)">
+                                    {{ locale.buttons.registerBtn }}
+                                </button>
+                            </div>
+                        </div>
+                    </template>
+                </template>
+            </div>
+            <div class="splashscreen" v-if="splashscreen">
+                <div class="splashContainer">
+                    <!-- DO NOT REMOVE THIS SPLASH SCREEN YOUR RIGHTS WILL BE REVOKED IF YOU DO -->
+                    <div>Framework is powered by Stuyk's Premium Roleplay</div>
+                    <div>Credits: Stuyk, Dzeknjak</div>
+                    <!-- DO NOT REMOVE THIS SPLASH SCREEN YOUR RIGHTS WILL BE REVOKED IF YOU DO -->
+                </div>
+            </div>
+        </div>
+        <script src="../vue.min.js"></script>
+        <script src="../less.min.js"></script>
+        <script src="./app.js" type="text/javascript"></script>
+    </body>
+</html>
