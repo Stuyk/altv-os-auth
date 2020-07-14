@@ -6,6 +6,10 @@ Created by Stuyk (Trevor Wessel)
 
 https://github.com/sponsors/Stuyk/
 
+---
+
+![](https://i.imgur.com/taSEyXj.jpg)
+
 # Description
 
 This repository provides an easy way to authenticate users into your database through the alt:V event emitters. Which basically means... put data in get data out in your other resources. This provides a simple decoupled method to authenticate your users and get an identifier through other events.
