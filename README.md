@@ -6,6 +6,8 @@ Created by Stuyk (Trevor Wessel)
 
 https://github.com/sponsors/Stuyk/
 
+⭐ This repository if you found it useful!
+
 ---
 
 ![](https://i.imgur.com/taSEyXj.jpg)
