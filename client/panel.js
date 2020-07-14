@@ -20,7 +20,9 @@ function showAuthPanel() {
     view = new alt.WebView(url);
     view.on('auth:Try', tryAuthPanel);
     view.on('auth:Ready', readyAuthPanel);
+
     showCursor(true);
+    alt.toggleGameControls(false);
 }
 
 function exitAuthPanel() {
@@ -29,6 +31,7 @@ function exitAuthPanel() {
     }
 
     showCursor(false);
+    alt.toggleGameControls(true);
 }
 
 function errorAuthPanel(msg) {
