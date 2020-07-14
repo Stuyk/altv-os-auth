@@ -43,6 +43,7 @@ npm install chalk
 npm install dotenv
 npm install pbkdf2
 npm install simplymongo
+npm install sjcl
 ```
 
 After simply add the name of this resource to your `server.cfg` resource section.
