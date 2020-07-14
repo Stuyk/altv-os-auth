@@ -5,46 +5,18 @@ const app = new Vue({
     el: '#app',
     data() {
         return {
+            show: false,
             errorMessage: null,
             registering: false,
-            lostPassword: false,
-            tokenSent: false,
-            splashscreen: true,
             email: '',
+            username: '',
             password: '',
-            password2: '',
-            token: '',
-            locale: {
-                headers: {
-                    lostPassword: 'Lost Password?',
-                    userLogin: 'User Login',
-                    userRegistration: 'User Registration'
-                },
-                desc: {
-                    tokenNotSent: 'We will send an email with a code to help you recover your account.',
-                    tokenSent:
-                        'You should recieve an email with a token within 5 minutes. Check your spam folder as well.',
-                    existingAccount: 'Login to your existing account using your email and password.',
-                    newAccount: `New to the server? Fill out the information below and we'll get you started.`
-                },
-                buttons: {
-                    lostPasswordBtn: 'Lost Password?',
-                    newAccountBtn: 'New Account?',
-                    existingAccountBtn: 'Existing Account?',
-                    registerBtn: 'Submit',
-                    loginBtn: 'Submit',
-                    returnToLoginBtn: 'Return to Login',
-                    requestTokenBtn: 'Request Token',
-                    submitTokenBtn: 'Submit Token'
-                },
-                website: 'http://www.stuyk.com/'
-            }
+            password2: ''
         };
     },
-    computed: {},
     methods: {
-        website() {
-            window.open(this.locale.website);
+        setReady() {
+            this.show = true;
         },
         setError(msg) {
             this.errorMessage = msg;
@@ -55,21 +27,6 @@ const app = new Vue({
         toggleMode() {
             this.errorMessage = null;
             this.registering = !this.registering;
-        },
-        toggleLostPassword() {
-            this.errorMessage = null;
-            this.lostPassword = !this.lostPassword;
-            this.registering = false;
-        },
-        processLostPassword() {
-            this.errorMessage = null;
-
-            if (this.email === '' || this.email === null) {
-                this.setError('Must specify a email.');
-                return;
-            }
-
-            this.tokenSent = true;
         },
         processLoginEnter(e) {
             if (e.key !== 'Enter') {
@@ -119,23 +76,21 @@ const app = new Vue({
             }
 
             if ('alt' in window) {
-                alt.emit('registration:Route', this.email, this.password, register);
-            } else {
-                console.log(`${this.email} / ${this.password} / isRegistering: ${register}`);
+                if (this.registering) {
+                    alt.emit('auth:Try', this.username, this.password, this.email);
+                    return;
+                }
+
+                alt.emit('auth:Try', this.username, this.password);
             }
         }
     },
     mounted() {
         if ('alt' in window) {
-            alt.on('registration:Error', this.setError);
-            alt.on('registration:SetEmail', this.setEmail);
-            alt.emit('registration:Ready');
+            alt.on('auth:Error', this.setError);
+            alt.on('auth:SetEmail', this.setEmail);
+            alt.on('auth:Ready', this.setReady);
+            alt.emit('auth:Ready');
         }
-
-        setTimeout(() => {
-            this.splashscreen = false;
-        }, 1);
-    },
-    updated() {},
-    watch: {}
+    }
 });
