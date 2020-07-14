@@ -78,7 +78,7 @@ async function handleLogin(player, username, password) {
         return;
     }
 
-    if (!verifyPassword(password, usernames[0].password)) {
+    if (!verifyPassword(password, accounts[0].password)) {
         alt.emitClient(player, 'auth:Error', MSGS.INCORRECT);
         return;
     }
