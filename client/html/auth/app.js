@@ -8,6 +8,7 @@ const app = new Vue({
             show: false,
             errorMessage: null,
             registering: false,
+            processing: false,
             email: '',
             username: '',
             password: '',
@@ -19,6 +20,7 @@ const app = new Vue({
             this.show = true;
         },
         setError(msg) {
+            this.processing = false;
             this.errorMessage = msg;
         },
         setEmail(email) {
@@ -44,9 +46,15 @@ const app = new Vue({
         },
         processRegistration(register = false) {
             this.errorMessage = null;
+            this.processing = true;
 
-            if (this.email === '' || this.email === null) {
-                this.setError('Must specify a email.');
+            if (this.username === '') {
+                this.setError('Must specify a username.');
+                return;
+            }
+
+            if (this.username.length <= 3) {
+                this.setError('Username must be atleast 4 characters.');
                 return;
             }
 
@@ -55,24 +63,31 @@ const app = new Vue({
                 return;
             }
 
-            if (this.email.length <= 3) {
-                this.setError('Email must be atleast 4 characters.');
-                return;
-            }
-
-            if (!this.email.includes('@')) {
-                this.setError('Must be a valid email address.');
-                return;
-            }
-
             if (this.password.length <= 3) {
                 this.setError('Password must be atleast 4 characters.');
                 return;
             }
 
-            if (this.registering && this.password !== this.password2) {
-                this.setError('Passwords do not match.');
-                return;
+            if (register) {
+                if (this.email === '' || this.email === null) {
+                    this.setError('Must specify a email.');
+                    return;
+                }
+
+                if (this.email.length <= 3) {
+                    this.setError('Email must be atleast 4 characters.');
+                    return;
+                }
+
+                if (!this.email.includes('@')) {
+                    this.setError('Must be a valid email address.');
+                    return;
+                }
+
+                if (this.password !== this.password2) {
+                    this.setError('Passwords do not match.');
+                    return;
+                }
             }
 
             if ('alt' in window) {
@@ -91,6 +106,8 @@ const app = new Vue({
             alt.on('auth:SetEmail', this.setEmail);
             alt.on('auth:Ready', this.setReady);
             alt.emit('auth:Ready');
+        } else {
+            this.setReady();
         }
     }
 });

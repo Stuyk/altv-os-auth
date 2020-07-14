@@ -3,13 +3,69 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Auth</title>
+        <title>Auth by Stuyk</title>
         <link rel="stylesheet/less" type="text/css" href="./style.less" />
     </head>
     <body>
         <div id="app">
-            <div class="container" v-if="show">
-                <p>Hello World!</p>
+            <div class="container" v-if="show && !processing">
+                <div class="errorMessage" v-if="errorMessage">
+                    {{ errorMessage }}
+                </div>
+                <div class="login" id="login" v-if="!registering">
+                    <div class="inputs">
+                        <div class="group">
+                            <label>Username</label>
+                            <input v-model="username" type="text" placeholder="Enter username..." ref="username" />
+                        </div>
+                        <div class="group">
+                            <label>Password</label>
+                            <input
+                                v-model="password"
+                                type="password"
+                                placeholder="Enter password..."
+                                ref="password"
+                                v-on:keyup="processLoginEnter"
+                            />
+                        </div>
+                    </div>
+                    <button class="newUser" @click="toggleMode">New User?</button>
+                    <button class="submit" @click="processRegistration(false)">Login</button>
+                </div>
+                <div class="register" id="register" v-if="registering">
+                    <div class="inputs">
+                        <div class="group">
+                            <label>Email</label>
+                            <input v-model="email" type="text" placeholder="Enter email..." ref="email" />
+                        </div>
+                        <div class="group">
+                            <label>Username</label>
+                            <input v-model="username" type="text" placeholder="Enter username..." ref="username" />
+                        </div>
+                        <div class="group">
+                            <label>Password</label>
+                            <input v-model="password" type="password" placeholder="Enter password..." ref="password" />
+                        </div>
+                        <div class="group">
+                            <label>Password</label>
+                            <input
+                                v-model="password2"
+                                type="password"
+                                placeholder="Enter password again..."
+                                ref="password again"
+                                v-on:keyup="processRegistrationEnter"
+                            />
+                        </div>
+                    </div>
+                    <button class="existingUser" @click="toggleMode">Existing User?</button>
+                    <button class="submit" @click="processRegistration(true)">Register</button>
+                </div>
+            </div>
+            <div class="container" v-if="processing && show">
+                <div class="lds-ripple">
+                    <div></div>
+                    <div></div>
+                </div>
             </div>
         </div>
         <script src="../vue.min.js"></script>

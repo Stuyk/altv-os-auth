@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 // Dependencies
 dotenv.config();
 
+// Configuration
 const config = {
     url: process.env['MONGO_URL'] ? process.env['MONGO_URL'] : 'mongodb://localhost:27017',
     database: process.env['MONGO_DB'] ? process.env['MONGO_DB'] : 'os-auth',
