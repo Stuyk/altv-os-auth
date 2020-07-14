@@ -96,7 +96,3 @@ async function handleLogin(player, username, password) {
 function debugDoneAuth(player, id, username, email) {
     console.log(chalk.cyanBright(`[OS] Authenticated - ${username} - ${id}`));
 }
-
-alt.on('playerConnect', player => {
-    alt.emitClient(player, 'auth:Open');
-});
