@@ -6,6 +6,10 @@ Created by Stuyk (Trevor Wessel)
 
 https://github.com/sponsors/Stuyk/
 
+❤️ Want direct support for my scripts and tutoring? Check out my Patreon.
+
+https://patreon.com/stuyk
+
 ⭐ This repository if you found it useful!
 
 ---
@@ -37,10 +41,10 @@ MONGO_DB=os-auth
 
 **I cannot stress this enough. Ensure you have NodeJS 13+ or you will have problems.**
 
--   [NodeJS 13+](https://nodejs.org/en/download/current/)
--   [MongoDB Community Server](https://www.mongodb.com/try/download/community)
--   An Existing or New Gamemode
--   General Scripting Knowledge
+- [NodeJS 13+](https://nodejs.org/en/download/current/)
+- [MongoDB Community Server](https://www.mongodb.com/try/download/community)
+- An Existing or New Gamemode
+- General Scripting Knowledge
 
 In your base gamemode directory where your `.exe` or `alt-server` files are. Simply run these commands.
 
@@ -76,11 +80,11 @@ Here's what you have to do.
 **Server-Side**
 
 ```js
-alt.on('playerConnect', showAuthWindow);
+alt.on("playerConnect", showAuthWindow);
 
 function showAuthWindow(player) {
-    alt.emitClient(player, 'auth:Open');
-    console.log(`${player.name} has connected!`);
+  alt.emitClient(player, "auth:Open");
+  console.log(`${player.name} has connected!`);
 }
 ```
 
@@ -92,11 +96,11 @@ Such as their account database id, username, email, etc.
 **Server-Side**
 
 ```js
-alt.on('auth:Done', exitAuthWindow);
+alt.on("auth:Done", exitAuthWindow);
 
 function exitAuthWindow(player, id, username, email) {
-    alt.emitClient(player, 'auth:Exit');
-    console.log(`${player.name} has authenticated!`);
-    console.log(`Their Database ID is: ${id}`);
+  alt.emitClient(player, "auth:Exit");
+  console.log(`${player.name} has authenticated!`);
+  console.log(`Their Database ID is: ${id}`);
 }
 ```
