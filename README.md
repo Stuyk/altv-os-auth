@@ -20,6 +20,18 @@ https://patreon.com/stuyk
 
 This repository provides an easy way to authenticate users into your database through the alt:V event emitters. Which basically means... put data in get data out in your other resources. This provides a simple decoupled method to authenticate your users and get an identifier through other events.
 
+# Quick Install (alt:V Resource Installer)
+
+```sh
+# Install alt:V Installer
+npm install -g altv-installer
+```
+
+```sh
+# Install with alt:V Installer
+altv-installer stuyk/altv-os-auth
+```
+
 # Setting Up Environment Variables
 
 Create a file in your main directory called `.env`. Edit this file with any notepad program, ide, etc.
