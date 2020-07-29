@@ -1,0 +1,22 @@
+[
+  {
+    "type": "package",
+    "name": "chalk"
+  },
+  {
+    "type": "package",
+    "name": "dotenv"
+  },
+  {
+    "type": "package",
+    "name": "pbkdf2"
+  },
+  {
+    "type": "package",
+    "name": "simplymongo"
+  },
+  {
+    "type": "package",
+    "name": "sjcl"
+  }
+]
