@@ -18,5 +18,21 @@
   {
     "type": "package",
     "name": "sjcl"
+  },
+  {
+      "type": "question",
+      "question": "What is your Mongo DB url? (Recommended: mongodb://localhost:27017)"
+  },
+  {
+      "type": "question",
+      "question": "What collection name do you want to use? (Recommended: os-auth)"
+  },
+  {
+      "type": "question",
+      "question": "Mongo Username if necessary? (Skip if Necessary)"
+  },
+  {
+      "type": "question",
+      "question": "Mongo Password if necessary? (Skip if Necessary)"
   }
 ]
