@@ -24,12 +24,12 @@ This repository provides an easy way to authenticate users into your database th
 
 ```sh
 # Install alt:V Installer
-npm install -g altv-installer
+npm install -g altv-pkg
 ```
 
 ```sh
 # Install with alt:V Installer
-altv-installer stuyk/altv-os-auth
+altv-pkg stuyk/altv-os-auth
 ```
 
 # Setting Up Environment Variables
