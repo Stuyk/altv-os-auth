@@ -20,6 +20,8 @@ https://patreon.com/stuyk
 
 This repository provides an easy way to authenticate users into your database through the alt:V event emitters. Which basically means... put data in get data out in your other resources. This provides a simple decoupled method to authenticate your users and get an identifier through other events.
 
+If you're looking for a Discord login system where you **do not** store emails, passwords, etc. Try out the [alt:V Discord Auth](https://github.com/Stuyk/altv-discord-auth) solution.
+
 # Quick Install (alt:V Resource Installer)
 
 ```sh
