@@ -23,6 +23,8 @@ function showAuthPanel() {
 
     showCursor(true);
     alt.toggleGameControls(false);
+
+    view.focus();
 }
 
 function exitAuthPanel() {
