@@ -31,13 +31,20 @@ try {
     throw err;
 }
 
-config.url = responses[0]; // url
-config.database = responses[1]; // database name
-config.collections = ['accounts']; // Collection
+config.db_url = responses[0]; // url
+config.db_database = responses[1]; // database name
+
+if (config.db_collections && config.db_collections.length >= 1) {
+    if (!config.db_collections.includes('accounts')) {
+        config.db_collections.push('accounts');
+    }
+} else {
+    config.db_collections = ['accounts']; // Collection
+}
 
 if (responses[2] && responses[3]) {
-    config.username = responses[2];
-    config.password = responses[3];
+    config.db_username = responses[2];
+    config.db_password = responses[3];
 }
 
 fs.writeFileSync(configPath, JSON.stringify(config));

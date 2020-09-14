@@ -24,4 +24,4 @@ async function handleDatabaseReady() {
     console.log(chalk.greenBright('[OS] Authentication - Started'));
 }
 
-new sm.Database(config.url, config.database, config.collections, config.username, config.password);
+new sm.Database(config.db_url, config.db_database, config.db_collections, config.db_username, config.db_password);

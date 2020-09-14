@@ -18,6 +18,8 @@ If you're looking for a Discord login system where you **do not** store emails, 
 
 # Quick Install (alt:V Resource Installer)
 
+More info here: [https://github.com/stuyk/altv-pkg](https://github.com/stuyk/altv-pkg)
+
 ```sh
 # Install alt:V Installer
 npm install -g altv-pkg
@@ -25,19 +27,25 @@ npm install -g altv-pkg
 
 ```sh
 # Install with alt:V Installer
-altv-pkg stuyk/altv-os-auth
+altv-pkg i stuyk/altv-os-auth
 ```
 
-# Setting Up Environment Variables
+# Setting Up Configuration
 
-Create a file in your main directory called `.env`. Edit this file with any notepad program, ide, etc.
+Create a file in your main directory called `config.json`.
+
+Edit this file with any notepad program, ide, etc.
+
 Add the following parameters to link up to your Mongo Database.
 
-```
-MONGO_URL=mongodb://localhost:27017
-MONGO_DB=os-auth
-# MONGO_USER=username
-# MONGO_PASS=pass
+```json
+{
+    "db_url": "mongodb://localhost:27017",
+    "db_database": "altv",
+    "db_collections": ["accounts"],
+    "db_username": null,
+    "db_password": null
+}
 ```
 
 **MONGO_URL** is the URL of your MongoDB database. If on windows leave as localhost.
