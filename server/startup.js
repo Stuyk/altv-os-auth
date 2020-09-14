@@ -20,7 +20,7 @@ try {
 sm.onReady(handleDatabaseReady);
 
 async function handleDatabaseReady() {
-    import('./auth');
+    await import('./auth');
     console.log(chalk.greenBright('[OS] Authentication - Started'));
 }
 

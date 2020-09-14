@@ -5,7 +5,7 @@ import * as sm from 'simplymongo';
 import { encryptPassword, verifyPassword } from './encryption';
 import chalk from 'chalk';
 
-const db = await sm.getDatabase();
+const db = sm.getDatabase();
 
 alt.onClient('auth:Try', handleAuthAttempt);
 alt.on('auth:Done', debugDoneAuth);

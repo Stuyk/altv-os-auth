@@ -1,9 +1,9 @@
-const fs = require('fs');
-const path = require('path');
+import * as fs from 'fs';
+import path from 'path';
 
 // Files
-const responsePath = path.join(__dirname, 'responses.json');
-const configPath = path.join(__dirname, '../../config.json');
+const responsePath = path.join(process.cwd(), 'resources/altv-os-auth/responses.json');
+const configPath = path.join(process.cwd(), 'config.json');
 
 if (!fs.existsSync(responsePath)) {
     throw new Error(`[altv-os-auth] Failed to read responses.json. Try re-installing with 'altv-pkg'`);
@@ -39,3 +39,5 @@ if (responses[2] && responses[3]) {
     config.username = responses[2];
     config.password = responses[3];
 }
+
+fs.writeFileSync(configPath, JSON.stringify(config));
