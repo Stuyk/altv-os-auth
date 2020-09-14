@@ -1,24 +1,27 @@
 /// <reference types="@altv/types-server" />
+import alt from 'alt-server';
 import chalk from 'chalk';
-import { Database } from 'simplymongo';
-import dotenv from 'dotenv';
+import * as sm from 'simplymongo';
+import * as fs from 'fs';
+import path from 'path';
 
-// Dependencies
-dotenv.config();
+let config;
 
-// Configuration
-const config = {
-    url: process.env['MONGO_URL'] ? process.env['MONGO_URL'] : 'mongodb://localhost:27017',
-    database: process.env['MONGO_DB'] ? process.env['MONGO_DB'] : 'os-auth',
-    username: process.env['MONGO_USER'] ? process.env['MONGO_USER'] : null,
-    password: process.env['MONGO_PASS'] ? process.env['MONGO_PASS'] : null,
-    collections: ['accounts']
-};
+try {
+    const currentPath = process.cwd();
+    const data = fs.readFileSync(path.join(currentPath, 'config.json'));
+    config = JSON.parse(data);
+} catch (err) {
+    alt.log(`[alvv-os-auth] Missing 'config.json' in main directory. Read the readme.`);
+    alt.log(`[altv-os-auth] Run 'altv-pkg i stuyk/altv-os-auth' to generate a config.`);
+    process.exit(1);
+}
 
-// Establish Database Singleton, Accessed through fetchDatabase in other files.
-new Database(config.url, config.database, config.collections, config.username, config.password);
+sm.onReady(handleDatabaseReady);
 
-// alt:V Resources
-import './auth';
+async function handleDatabaseReady() {
+    import('./auth');
+    console.log(chalk.greenBright('[OS] Authentication - Started'));
+}
 
-console.log(chalk.greenBright('[OS] Authentication - Started'));
+new sm.Database(config.url, config.database, config.collections, config.username, config.password);

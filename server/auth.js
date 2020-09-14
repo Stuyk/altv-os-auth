@@ -1,9 +1,11 @@
 /// <reference types="@altv/types-server" />
 import alt from 'alt-server';
 import { MSGS } from './messages';
-import { fetchDatabaseInstance } from 'simplymongo';
+import * as sm from 'simplymongo';
 import { encryptPassword, verifyPassword } from './encryption';
 import chalk from 'chalk';
+
+const db = await sm.getDatabase();
 
 alt.onClient('auth:Try', handleAuthAttempt);
 alt.on('auth:Done', debugDoneAuth);
@@ -41,7 +43,6 @@ async function handleAuthAttempt(player, username, password, email) {
  * @param  {String} password
  */
 async function handleRegistration(player, email, username, password) {
-    const db = await fetchDatabaseInstance();
     const emails = await db.fetchAllByField('email', email, 'accounts');
     if (emails.length >= 1) {
         alt.emitClient(player, 'auth:Error', MSGS.EXISTS);
@@ -71,7 +72,6 @@ async function handleRegistration(player, email, username, password) {
  * @param  {String} password
  */
 async function handleLogin(player, username, password) {
-    const db = await fetchDatabaseInstance();
     const accounts = await db.fetchAllByField('username', username, 'accounts');
     if (accounts.length <= 0) {
         alt.emitClient(player, 'auth:Error', MSGS.INCORRECT);

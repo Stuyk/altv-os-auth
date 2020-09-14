@@ -5,14 +5,6 @@
   },
   {
     "type": "package",
-    "name": "dotenv"
-  },
-  {
-    "type": "package",
-    "name": "pbkdf2"
-  },
-  {
-    "type": "package",
     "name": "simplymongo"
   },
   {
@@ -25,7 +17,7 @@
   },
   {
       "type": "question",
-      "question": "What collection name do you want to use? (Recommended: os-auth)"
+      "question": "What database name do you want to use? (Recommended: altv)"
   },
   {
       "type": "question",
@@ -34,5 +26,9 @@
   {
       "type": "question",
       "question": "Mongo Password if necessary? (Skip if Necessary)"
+  },
+  {
+      "type": "postinstall",
+      "file": "./scripts/config.js"
   }
 ]
