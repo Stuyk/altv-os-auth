@@ -30,6 +30,8 @@ npm install -g altv-pkg
 altv-pkg i stuyk/altv-os-auth
 ```
 
+**Make sure to run the script after answering questions.**
+
 # Setting Up Configuration
 
 Create a file in your main directory called `config.json`.
@@ -48,10 +50,13 @@ Add the following parameters to link up to your Mongo Database.
 }
 ```
 
-**MONGO_URL** is the URL of your MongoDB database. If on windows leave as localhost.
-**MONGO_DB** is the name of the database where it will create a collection called `accounts`.
-**MONGO_USER** is completely optional. Recommended in a production environment.
-**MONGO_PASS** is completely optional. Recommended in a production environment.
+**db_url** is the URL of your MongoDB database. If on windows leave as localhost.
+
+**db_database** is the name of the database where it will create a collection called `accounts`.
+
+**db_username** is completely optional. Recommended in a production environment.
+
+**db_password** is completely optional. Recommended in a production environment.
 
 ## Installing Dependencies / Installation
 
