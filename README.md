@@ -4,6 +4,8 @@
 
 [⌨️ Learn how to script for alt:V](https://altv.stuyk.com/)
 
+[💡 Need a Roleplay Script? Try Athena!](https://gtavathena.com/)
+
 ⭐ This repository if you found it useful!
 
 ---
